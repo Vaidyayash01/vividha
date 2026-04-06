@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>small message for you</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #d4d4cc, #eaeae2);
+    overflow-x: hidden;
+}
+
+/* INTRO */
+#intro {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#intro h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 32px;
+    color: white;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 22px;
+    border-radius: 30px;
+    border: none;
+    background: #333;
+    color: white;
+    cursor: pointer;
+}
+
+
+/*#nextBtn, #submitBtn {
+    display: block;
+    margin: 20px auto;
+}*/
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.nav-buttons button {
+    margin-top: 0 !important;   /* remove global margin */
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+
+    font-size: 18px;
+    padding: 0;
+
+    background: rgba(255,255,255,0.35);
+    backdrop-filter: blur(10px);
+}
+
+/* FORM SECTION */
+#formSection {
+    display: none;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#text{
+    text-align:center;
+font-family:'Caveat';
+}
+/* GLASS CARD */
+.form-card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(18px);
+    border-radius: 20px;
+    padding: 30px 25px;
+    width: 90%;
+    max-width: 360px;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15), inset 0 1px 2px rgba(255,255,255,0.5);
+}
+
+h4 {
+    font-family: 'Caveat';
+    font-size: 22px;
+    color: #333;
+}
+
+
+/* STEPS */
+.step { display: none; }
+.step.active { display: block; }
+
+/* INPUT */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(5px);
+    font-size: 14px;
+}
+
+/* ✅ NEW NAV BUTTONS */
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+.nav-buttons button {
+    padding: 10px 16px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+}
+
+/* MAIN */
+#main {
+    display: none;
+    padding: 20px;
+    text-align: center;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.collage img {
+    width: 100%;
+    max-width: 380px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.message {
+    max-width: 350px;
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: #333;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 1s;
+}
+
+.message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .message {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    #intro h1 {
+        font-size: 24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+    <h1>✨ A small surprise for you ✨</h1>
+    <button onclick="start()">Tap to Reveal 💖</button>
+</div>
+
+<!-- FORM -->
+<div id="formSection">
+<div class="form-card">
+<div id="text">
+<h3>Before surprise let me ask you some question,For my General Knowledge.....As of your my general knowledge is also important n...</h3>
+</div>
+
+<h4>Quick checklist </h4>
+
+<form id="myForm">
+
+<div class="step active">
+<p>Your Favourite colour?</p>
+<input type="text" name="colour">
+</div>
+
+<div class="step">
+<p>Your Favourite food?</p>
+<input type="text" name="food">
+</div>
+
+<div class="step">
+<p>What's Your 3 wishes?</p>
+<input type="text" name="loves_you">
+</div>
+
+<div class="step">
+<p>What's your Dream?</p>
+<input type="text" name="love_most">
+</div>
+
+<div class="step">
+<p>Whats your Birthdate?</p>
+<input type="date" id="date" name="birthdate" required>
+</div>
+
+<div class="step">
+<p>Whose birthday is it ?</p>
+<input type="text" id="name" name="birthdayName" required>
+</div>
+
+<!-- ✅ UPDATED BUTTONS -->
+<div class="nav-buttons">
+    <button type="button" id="prevBtn">⬅️</button>
+    <button type="button" id="nextBtn">➡️</button>
+</div>
+
+<button type="submit" id="submitBtn" style="display:none;">Unlock 🎁</button>
+
+</form>
+</div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+<div class="content">
+
+<div class="collage">
+    <img src="collage1.png">
+</div>
+
+<div class="message" id="msg">
+    Happiest Birthday Vividha💖<br>
+    You deserve all the happiness in the world 
+ Stay the same amazing person always as you are......<br>
+
+thankyou for being with me, I always feel special whenever I talk with you and yes the most adorable thing is you that your 'Bye' its look like just "tula mhnayach aahe yash bs kr tuzi bkk bkk thev lavkr aata"  asch kahi n  Vividha but that also feel me nice as i feel that there is someone to whom I can tell everthing and nothing to worry about what I am saying.
+    
+
+
+</div>
+
+</div>
+</div>
+
+<audio id="music" loop>
+    <source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// ✅ UPDATED START FUNCTION
+function start(){
+    intro.style.display="none";
+
+    const done = localStorage.getItem("formDone");
+
+    if(done){
+        main.style.display="block";
+        music.play();
+        setTimeout(()=> msg.classList.add("show"), 800);
+    } else {
+        formSection.style.display="flex";
+    }
+}
+
+// STEP LOGIC
+let step = 0;
+const steps = document.querySelectorAll(".step");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
+const submitBtn = document.getElementById("submitBtn");
+
+// ✅ NEW FUNCTION
+function showStep(i){
+    steps.forEach(s => s.classList.remove("active"));
+    steps[i].classList.add("active");
+
+    prevBtn.style.display = i === 0 ? "none" : "inline-block";
+
+    if(i === steps.length - 1){
+        nextBtn.style.display="none";
+        submitBtn.style.display="inline-block";
+    } else {
+        nextBtn.style.display="inline-block";
+        submitBtn.style.display="none";
+    }
+}
+
+nextBtn.onclick = () => {
+    let input = steps[step].querySelector("input");
+
+    if(input.value.trim() === ""){
+        alert("Answer first 😤");
+        return;
+    }
+
+    step++;
+    showStep(step);
+};
+
+prevBtn.onclick = () => {
+    if(step > 0){
+        step--;
+        showStep(step);
+    }
+};
+
+// initialize
+showStep(0);
+
+// SUBMIT
+myForm.onsubmit = (e) => {
+    e.preventDefault();
+
+    let date = document.getElementById("date").value;
+    let name = document.getElementById("name").value.toLowerCase().trim();
+
+    let correctDate = "2003-04-07";
+    let correctName = "vividha";
+
+    if(date === correctDate && name === correctName){
+
+        // ✅ SAVE VISIT
+        localStorage.setItem("formDone","true");
+
+        const formData = new FormData(myForm);
+        fetch("https://formspree.io/f/xlgoovjl", {
+            method: "POST",
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        formSection.style.display="none";
+        main.style.display="block";
+
+        music.play();
+
+        setTimeout(()=>{
+            msg.classList.add("show");
+        },800);
+
+    } else {
+        alert("❌ Wrong answer! Try again 😄");
+    }
+};
+
+
+</script>
+
+</body>
+</html>
